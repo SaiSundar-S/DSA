@@ -1,0 +1,50 @@
+Problem8:
+
+Given an m x n matrix, return all elements of the matrix in spiral order.
+
+ 
+
+Example 1:
+
+
+Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
+
+solution.....
+
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& arr) {
+        int n=arr.size();
+         int m=arr[0].size();
+        int rmin=0,rmax=arr.size()-1;
+        int cmin=0,cmax=arr[0].size()-1;
+         vector<int> res(m * n);
+        int count=0,j=0;
+
+        while(count<n*m){
+            for(int col=cmin;col<=cmax&&count<n*m;col++){
+                 res[count++]=arr[rmin][col];
+                
+            }
+            rmin++;
+
+            for(int row=rmin; row<=rmax&&count<n*m;row++){
+                res[count++]=arr[row][cmax];
+               
+            }
+            cmax--;
+
+            for(int col=cmax;col>=cmin&&count<n*m;col--){
+                res[count++]=arr[rmax][col];  
+            }
+            rmax--;
+
+            for(int row=rmax;row>=rmin&&count<n*m;row--){
+                res[count++]=arr[row][cmin];
+             
+            }
+            cmin++;
+        }
+        return res;
+    }
+};
