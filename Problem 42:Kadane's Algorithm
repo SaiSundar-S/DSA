@@ -1,0 +1,34 @@
+Problem 42:Kadane's Algorithm(Maximum Subarray sum)
+
+Given an integer array nums, find the 
+subarray
+ with the largest sum, and return its sum.
+
+ 
+
+Example 1:
+
+Input: nums = [-2,1,-3,4,-1,2,1,-5,4]
+Output: 6
+Explanation: The subarray [4,-1,2,1] has the largest sum 6.
+
+
+solution:
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int maxsum=INT_MIN , currsum=0;
+
+        for(int val: nums){
+            currsum+=val;
+            maxsum=max(currsum,maxsum);
+            if(currsum<0){
+                currsum=0;
+            }
+        }
+        return maxsum;
+    }
+};
+
+T(n):O(n);
